@@ -1,14 +1,28 @@
-import React, { useRef } from "react";
+import React, { useContext, useRef, useState } from "react";
 import Link from "next/link";
 import LinkedinLogo from "../components/LinkedinLogo";
+import { useRouter } from "next/router";
+import { AuthContext } from "../context/AuthContext";
 
 function Register() {
-  const passRef = useRef();
+  const [isShow, setIsShow] = useState(false);
+  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
+  const [password, setPassword] = useState("");
+
+  const router = useRouter();
+  const { signup, state } = useContext(AuthContext);
 
   const togglePassword = (e) => {
     e.preventDefault();
-    passRef.current.type =
-      passRef.current.type === "password" ? "text" : "password";
+    setIsShow((prev) => !prev);
+  };
+
+  const signupHandler = async (e) => {
+    e.preventDefault();
+    signup({ email, password, name }, () => {
+      router.push("/dashboard");
+    });
   };
 
   return (
@@ -18,7 +32,7 @@ function Register() {
         {"Join LinkedIn now — it's free"}
       </h2>
       <div className="mt-4 w-full">
-        <form className="flex flex-col gap-6">
+        <form onSubmit={signupHandler} className="flex flex-col gap-6">
           <div className=" flex flex-col gap-0 group ">
             <label
               className="text-gray-500 group-focus-within:text-gray-700 text-sm "
@@ -30,6 +44,8 @@ function Register() {
               className="border p-2 peer  rounded outline-gray-600 border-gray-400"
               type="email"
               id="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
           <div className=" flex flex-col gap-0 ">
@@ -43,6 +59,8 @@ function Register() {
               className="border p-2 peer  rounded outline-gray-600 border-gray-400"
               type="text"
               id="name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
             />
           </div>
           <div className="relative  flex flex-col gap-0 ">
@@ -53,10 +71,12 @@ function Register() {
               Password (6 or more characters)
             </label>
             <input
-              ref={passRef}
+              min="6"
               className="border p-2 peer  rounded outline-gray-600 border-gray-400"
-              type="password"
+              type={isShow ? "text" : "password"}
               id="pass"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
             <button
               onClick={togglePassword}
@@ -64,11 +84,17 @@ function Register() {
               onTouchEnd={togglePassword}
               className="absolute right-2 top-7 text-gray-600 "
             >
-              Show
+              {isShow ? "Hide" : "Show"}
             </button>
+            {state.errorMessage ? (
+              <p className=" text-red-700">{state.errorMessage}</p>
+            ) : null}
           </div>
-          <button className="w-full rounded-full h-12 text-white font-semibold bg-LinkedinBlue">
-            Sign in
+          <button
+            type="submit"
+            className="w-full rounded-full h-12 text-white font-semibold bg-LinkedinBlue"
+          >
+            Continue
           </button>
         </form>
       </div>

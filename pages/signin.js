@@ -1,9 +1,22 @@
 import Link from "next/link";
-import React from "react";
+import React, { useState, useContext } from "react";
 import Input from "../components/Input/Input";
 import LinkedinLogo from "../components/LinkedinLogo";
+import { AuthContext } from "../context/AuthContext";
+import { useRouter } from "next/router";
 
-function signin() {
+function Sigin() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const { signin } = useContext(AuthContext);
+  const router = useRouter();
+  const siginHandler = (e) => {
+    e.preventDefault();
+    signin({ email, password }, () => {
+      router.push("/dashboard");
+    });
+  };
+
   return (
     <div className="w-[90%] mx-auto h-screen bg-white flex flex-col ">
       <LinkedinLogo />
@@ -14,13 +27,17 @@ function signin() {
             Stay updated on your professional world
           </p>
         </div>
-        <form className="w-full flex flex-col gap-5 ">
+        <form onSubmit={siginHandler} className="w-full flex flex-col gap-5 ">
           <input
+            onChange={(e) => setEmail(e.target.value)}
+            value={email}
             type={"text"}
             placeholder="Email or Phone"
             className="outline-none border-black border px-2 py-3 placeholder:text-lg text-lg placeholder:text-gray-600 w-full rounded-md "
           />
           <input
+            onChange={(e) => setPassword(e.target.value)}
+            value={password}
             type={"password"}
             placeholder="Password"
             className="outline-none border-black border px-2 py-3 placeholder:text-lg text-lg placeholder:text-gray-600 w-full rounded-md "
@@ -28,7 +45,10 @@ function signin() {
           <div className="text-[#0b68c3] text-sm font-semibold ">
             Forgot Password?
           </div>
-          <button className="w-full rounded-full h-12 text-white font-semibold bg-LinkedinBlue">
+          <button
+            type="submit"
+            className="w-full rounded-full h-12 text-white font-semibold bg-LinkedinBlue"
+          >
             Sign in
           </button>
         </form>
@@ -45,4 +65,4 @@ function signin() {
   );
 }
 
-export default signin;
+export default Sigin;

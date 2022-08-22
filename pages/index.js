@@ -1,8 +1,9 @@
 import HomeElement from "../components/HomeElement";
 import Navbar from "../components/Navbar";
 import Image from "next/image";
+// import requireAuth from "../middlewares/requireAuth";
 
-export default function Home() {
+function Home() {
   return (
     <div className="h-screen flex flex-col overflow-y-hidden py-4 bg-background  ">
       <Navbar />
@@ -30,3 +31,5 @@ export default function Home() {
     </div>
   );
 }
+
+export default Home;

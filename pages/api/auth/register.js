@@ -5,6 +5,11 @@ import jwt from "jsonwebtoken";
 export default async function handler(req, res) {
   if (req.method === "POST") {
     const { name, email, password } = req.body;
+    console.log(name, email, password);
+    if (!name || !email || !password) {
+      return res.status(422).send("email and password are required");
+    }
+
     try {
       await connectMongo();
       const user = new User({ name, email, password });
