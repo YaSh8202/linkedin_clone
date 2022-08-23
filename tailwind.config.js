@@ -11,7 +11,11 @@ module.exports = {
         LinkedinBlue: "#0a66c2",
         brown: "#8F5849",
       },
+      backgroundImage: {
+        "profile-bg": 'url("/profilebg.svg")',
+      },
     },
   },
   plugins: [],
+  darkMode: "class",
 };
