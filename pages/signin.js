@@ -8,7 +8,7 @@ import { useRouter } from "next/router";
 function Sigin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { signin } = useContext(AuthContext);
+  const { state, signin } = useContext(AuthContext);
   const router = useRouter();
   const siginHandler = (e) => {
     e.preventDefault();
@@ -42,9 +42,13 @@ function Sigin() {
             placeholder="Password"
             className="outline-none border-black border px-2 py-3 placeholder:text-lg text-lg placeholder:text-gray-600 w-full rounded-md "
           />
+          {state.errorMessage ? (
+            <p className=" text-red-700">{state.errorMessage}</p>
+          ) : null}
           <div className="text-[#0b68c3] text-sm font-semibold ">
             Forgot Password?
           </div>
+
           <button
             type="submit"
             className="w-full rounded-full h-12 text-white font-semibold bg-LinkedinBlue"

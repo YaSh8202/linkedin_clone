@@ -11,7 +11,7 @@ const requireAuth = (handler) => {
       return res.status(401).send("You must be logged in");
     }
     const token = authorization.replace("Bearer ", ""); // remove Bearer from the token
-    jwt.verify(token, process.env.JWT_KEY, async (err, payload) => {
+    jwt.verify(token, process.env.JWT_SECRET, async (err, payload) => {
       if (err) {
         return res.status(401).send({ error: "You must be logged in" });
       }

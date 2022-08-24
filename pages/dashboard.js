@@ -1,5 +1,6 @@
 import Image from "next/image";
 import React from "react";
+import CreatePost from "../components/Dashboard/CreatePost";
 import Discover from "../components/Dashboard/Discover";
 import Nav from "../components/Dashboard/Nav";
 import News from "../components/Dashboard/News";
@@ -15,7 +16,9 @@ const Dashboard = () => {
             <ProfileBox name={"Yash Bajaj"} email={"bajajy82@gmail.com"} />
             <Discover className="hidden lg:flex" />
           </div>
-          <div className="lg:col-span-5 bg-white h-full  "></div>
+          <div className="lg:col-span-5  h-full  ">
+            <CreatePost />
+          </div>
           <div className="lg:col-span-3 ">
             <News />
             <div className="bg-white rounded-lg w-full h-auto px-3 mt-3 ">
@@ -23,7 +26,7 @@ const Dashboard = () => {
                 src={"/Dashboard-Promo-Image.jpg"}
                 alt="promoImage"
                 width={350}
-                height={300}
+                height={250}
                 layout="responsive"
               />
             </div>

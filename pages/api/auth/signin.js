@@ -15,7 +15,7 @@ export default async function handler(req, res) {
   }
   try {
     await user.comparePassword(password);
-    const token = jwt.sign({ userId: user._id }, "MY_SECRET_KEY");
+    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET);
     res.send({ token });
   } catch (err) {
     return res.status(422).send({ error: "Invalid password or email" });

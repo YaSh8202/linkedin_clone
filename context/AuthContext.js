@@ -47,7 +47,7 @@ const signin =
   (dispatch) =>
   ({ email, password }, callback) => {
     try {
-      const response = axios.post("/api/auth/sigin", {
+      const response = axios.post("/api/auth/signin", {
         email,
         password,
       });
@@ -62,6 +62,13 @@ const signin =
       });
     }
   };
+
+const tryLoalSignin = (dispatch) => async () => {
+  const token = localStorage.getItem("token");
+  if (token) {
+    dispatch({ type: "signin", payload: token });
+  }
+};
 
 const { Provider, Context } = createDataContext(
   authReducer,
