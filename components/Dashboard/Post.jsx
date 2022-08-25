@@ -54,13 +54,13 @@ const Post = ({ message, userId, imageURL }) => {
       </div>
 
       <div className="flex w-full flex-row justify-evenly items-center mt-2 ">
-        <div className="flex flex-row items-center">
-          <BiLike size={28} className="text-gray-600" />
-          <p>Like</p>
+        <div className="flex flex-row items-center gap-2 ">
+          <BiLike size={28} className="text-gray-600 dark:text-gray-300 " />
+          <p className="text-gray-600 dark:text-gray-300 ">Like</p>
         </div>
-        <div className="flex flex-row items-center">
-          <CgComment size={28} className="text-gray-600" />
-          <p className="text-gray-600">Comment</p>
+        <div className="flex flex-row items-center gap-2 ">
+          <CgComment size={28} className="text-gray-600 dark:text-gray-300" />
+          <p className="text-gray-600 dark:text-gray-300 ">Comment</p>
         </div>
       </div>
     </div>
