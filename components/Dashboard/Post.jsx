@@ -28,18 +28,18 @@ const Post = ({ message, userId, imageURL }) => {
         <div className="flex flex-row items-center gap-3">
           <UserIcon size={35} />
           <div className="flex flex-col justify-start ">
-            <h3 className="text-lg font-medium text-gray-700 capitalize ">
+            <h3 className="text-lg dark:text-gray-200 font-medium text-gray-800 capitalize ">
               {userName}
             </h3>
-            <p>{email}</p>
+            <p className="dark:text-gray-400 text-gray-600 ">{email}</p>
           </div>
         </div>
         <div>
-          <BsThreeDots size={25} className="text-gray-500" />
+          <BsThreeDots size={25} className="text-gray-400" />
         </div>
       </div>
       <div className="flex flex-col gap-3">
-        <p className="text-lg">{message}</p>
+        <p className="text-lg dark:text-gray-100 text-gray-900">{message}</p>
         {imageURL && (
           <div className="w-auto mx-auto h-[180px] mt-5">
             <Image

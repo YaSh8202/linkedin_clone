@@ -10,6 +10,7 @@ import axios from "axios";
 import Post from "../components/Dashboard/Post";
 import { AuthContext } from "../context/AuthContext";
 import { useRouter } from "next/router";
+import Head from "next/head";
 
 const Dashboard = () => {
   const [isModalOpen, setIsModalOpen] = React.useState(false);
@@ -42,11 +43,15 @@ const Dashboard = () => {
 
   return (
     <div className="w-full overflow-hidden">
+      <Head>
+        <title>Dashboard | LinkedIn Clone</title>
+        <link rel="icon" href="/linkedin-icon.svg"></link>
+      </Head>
       {isModalOpen && (
         <CreatePostModal fetchPosts={fetchPosts} onCloseModal={toggleModal} />
       )}
       <Nav />
-      <div className="w-screen lg:h-[calc(100vh-70px)] bg-gray-100 ">
+      <div className="w-screen lg:h-[calc(100vh-70px)] bg-gray-100 dark:bg-black ">
         <div className="grid w-[90%] max-w-[75rem] mx-auto grid-cols-1 lg:grid-cols-10 h-full gap-x-5  pt-3 ">
           <div className="flex flex-col gap-5 lg:col-span-2    h-full ">
             <ProfileBox name={state.name} email={state.email} />
@@ -68,7 +73,7 @@ const Dashboard = () => {
           </div>
           <div className="lg:col-span-3 ">
             <News />
-            <div className="bg-white rounded-lg w-full h-auto px-3 mt-3 ">
+            <div className="bg-white dark:bg-darkBg rounded-lg w-full h-auto px-3 mt-3 ">
               <Image
                 src={"/Dashboard-Promo-Image.jpg"}
                 alt="promoImage"

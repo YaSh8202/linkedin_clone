@@ -3,6 +3,7 @@ import Link from "next/link";
 import LinkedinLogo from "../components/LinkedinLogo";
 import { useRouter } from "next/router";
 import { AuthContext } from "../context/AuthContext";
+import Head from "next/head";
 
 function Register() {
   const [isShow, setIsShow] = useState(false);
@@ -33,6 +34,10 @@ function Register() {
 
   return (
     <div className="w-[90%] max-w-[28rem] md:items-center mx-auto h-screen bg-white flex flex-col">
+      <Head>
+        <title>Register | LinkedIn Clone</title>
+        <link rel="icon" href="/linkedin-icon.svg"></link>
+      </Head>
       <LinkedinLogo />
       <h2 className="text-center my-4 text-2xl font-semibold">
         {"Join LinkedIn now — it's free"}

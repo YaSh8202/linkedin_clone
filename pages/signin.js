@@ -4,6 +4,7 @@ import Input from "../components/Input/Input";
 import LinkedinLogo from "../components/LinkedinLogo";
 import { AuthContext } from "../context/AuthContext";
 import { useRouter } from "next/router";
+import Head from "next/head";
 
 function Sigin() {
   const [email, setEmail] = useState("");
@@ -25,6 +26,10 @@ function Sigin() {
 
   return (
     <div className="w-[90%] mx-auto h-screen bg-white flex flex-col ">
+      <Head>
+        <title>Sign in | LinkedIn Clone</title>
+        <link rel="icon" href="/linkedin-icon.svg"></link>
+      </Head>
       <LinkedinLogo />
       <div className="flex flex-col items-start md:rounded-md md:shadow-lg w-full max-w-[27rem] mx-auto  h-[24rem] md:h-[34rem] md:px-6 ">
         <div className="mb-6">
