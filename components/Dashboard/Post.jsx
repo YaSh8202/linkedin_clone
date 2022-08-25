@@ -1,0 +1,70 @@
+import React, { useEffect } from "react";
+import UserIcon from "../UserIcon";
+import { BsThreeDots } from "react-icons/bs";
+import { BiLike } from "react-icons/bi";
+import { CgComment } from "react-icons/cg";
+import Image from "next/image";
+import axios from "axios";
+
+const Post = ({ message, userId, imageURL }) => {
+  const [userName, setUserName] = React.useState("");
+  const [email, setEmail] = React.useState("");
+  useEffect(() => {
+    const fetchUser = async () => {
+      const res = await axios.get("/api/getuser", {
+        params: {
+          userId,
+        },
+      });
+      setUserName(res.data.name);
+      setEmail(res.data.email);
+    };
+    fetchUser();
+  });
+
+  return (
+    <div className="py-3 px-4 rounded-xl flex flex-col bg-white dark:bg-darkBg gap-3 ">
+      <div className="flex flex-row items-center justify-between">
+        <div className="flex flex-row items-center gap-3">
+          <UserIcon size={35} />
+          <div className="flex flex-col justify-start ">
+            <h3 className="text-lg font-medium text-gray-700 capitalize ">
+              {userName}
+            </h3>
+            <p>{email}</p>
+          </div>
+        </div>
+        <div>
+          <BsThreeDots size={25} className="text-gray-500" />
+        </div>
+      </div>
+      <div className="flex flex-col gap-3">
+        <p className="text-lg">{message}</p>
+        {imageURL && (
+          <div className="w-auto mx-auto h-[180px] mt-5">
+            <Image
+              alt="PostImage"
+              src={imageURL}
+              className="rounded"
+              height={180}
+              width={300}
+            />
+          </div>
+        )}
+      </div>
+
+      <div className="flex w-full flex-row justify-evenly items-center mt-2 ">
+        <div className="flex flex-row items-center">
+          <BiLike size={28} className="text-gray-600" />
+          <p>Like</p>
+        </div>
+        <div className="flex flex-row items-center">
+          <CgComment size={28} className="text-gray-600" />
+          <p className="text-gray-600">Comment</p>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Post;

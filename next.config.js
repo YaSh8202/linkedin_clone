@@ -2,19 +2,22 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
-  async headers() {
-    return [
-      {
-        source: "/:path*{/}?",
-        headers: [
-          {
-            key: "authorization",
-            value: "",
-          },
-        ],
-      },
-    ];
+  images: {
+    domains: ["images.unsplash.com"],
   },
+  // async headers() {
+  //   return [
+  //     {
+  //       source: "/:path*{/}?",
+  //       headers: [
+  //         {
+  //           key: "authorization",
+  //           value: "",
+  //         },
+  //       ],
+  //     },
+  //   ];
+  // },
 };
 
 module.exports = nextConfig;

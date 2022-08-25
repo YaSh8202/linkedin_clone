@@ -5,9 +5,12 @@ import { MdVideoCameraBack } from "react-icons/md";
 import { IoBriefcase } from "react-icons/io5";
 import { MdArticle } from "react-icons/md";
 
-const CreatePost = () => {
+const CreatePost = ({ onNewPost }) => {
   return (
-    <div className="rounded-lg px-4 py-3 bg-white ">
+    <div
+      onClick={onNewPost}
+      className=" cursor-pointer rounded-lg px-4 py-3 bg-white "
+    >
       <div className="flex flex-row gap-3.5 items-center ">
         <UserIcon size={35} />
         <div className="rounded-full font-semibold text-lg border-gray-400 border px-4 py-3 flex-1 text-gray-800 ">

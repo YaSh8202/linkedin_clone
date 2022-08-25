@@ -1,5 +1,5 @@
 import Link from "next/link";
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import Input from "../components/Input/Input";
 import LinkedinLogo from "../components/LinkedinLogo";
 import { AuthContext } from "../context/AuthContext";
@@ -8,7 +8,7 @@ import { useRouter } from "next/router";
 function Sigin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { state, signin } = useContext(AuthContext);
+  const { state, signin, tryLocalSignin } = useContext(AuthContext);
   const router = useRouter();
   const siginHandler = (e) => {
     e.preventDefault();
@@ -16,6 +16,12 @@ function Sigin() {
       router.push("/dashboard");
     });
   };
+
+  useEffect(() => {
+    tryLocalSignin(() => {
+      router.push("/dashboard");
+    });
+  }, [router, tryLocalSignin]);
 
   return (
     <div className="w-[90%] mx-auto h-screen bg-white flex flex-col ">

@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import LinkedinLogo from "../components/LinkedinLogo";
 import { useRouter } from "next/router";
@@ -11,7 +11,13 @@ function Register() {
   const [password, setPassword] = useState("");
 
   const router = useRouter();
-  const { signup, state } = useContext(AuthContext);
+  const { signup, state, tryLocalSignin } = useContext(AuthContext);
+
+  useEffect(() => {
+    tryLocalSignin(() => {
+      router.push("/dashboard");
+    });
+  }, [router, tryLocalSignin]);
 
   const togglePassword = (e) => {
     e.preventDefault();

@@ -7,10 +7,14 @@ import { SiGooglemessages } from "react-icons/si";
 import { IoBriefcase } from "react-icons/io5";
 import { BsPersonCircle } from "react-icons/bs";
 import { BsFillGrid3X3GapFill } from "react-icons/bs";
+import { FaSignOutAlt } from "react-icons/fa";
 
 import SlideInput from "../../components/Input/SldeInput";
 import NavIcon from "./NavIcon";
+import { AuthContext } from "../../context/AuthContext";
 const Nav = () => {
+  const { signout } = React.useContext(AuthContext);
+
   return (
     <div className="dark:bg-gray-800 bg-white px-3  top-0 left-0 right-0 sticky ">
       <div className="  flex flex-row justify-between  w-full h-auto pt-1   max-w-[75rem] mx-auto ">
@@ -36,6 +40,13 @@ const Nav = () => {
           <NavIcon Icon={IoIosNotifications} text="Notifications" />
           <NavIcon Icon={BsPersonCircle} text="Me" onlyDesktop={true} />
           <NavIcon Icon={BsFillGrid3X3GapFill} text="Work" onlyDesktop={true} />
+          <button
+            onClick={() => {
+              signout();
+            }}
+          >
+            <NavIcon Icon={FaSignOutAlt} text="Signout" />
+          </button>
           <SlideInput />
         </div>
       </div>
