@@ -59,7 +59,7 @@ const Dashboard = () => {
           </div>
           <div className="lg:col-span-5  h-full overflow-auto scrollbar-hide ">
             <CreatePost onNewPost={toggleModal} />
-            <div className="flex flex-col gap-5 mt-5">
+            <div className="flex flex-col gap-5 my-5">
               {posts &&
                 posts.map((post) => (
                   <Post

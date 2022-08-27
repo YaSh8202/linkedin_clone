@@ -9,7 +9,7 @@ const ProfileBox = ({ email, name }) => {
           <div className="bg-white flex items-center justify-center rounded-full w-14 h-14 absolute left-0 right-0 mx-auto top-8 ">
             <BsPersonCircle size={50} className="text-gray-700" />
           </div>
-          <div className="flex flex-col items-center mt-12">
+          <div className="flex flex-col items-center mt-12 pb-3 lg:pb-0">
             <h3 className="text-lg font-medium capitalize text-gray-800 dark:text-gray-100  ">
               {name}
             </h3>

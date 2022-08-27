@@ -41,15 +41,16 @@ const Post = ({ message, userId, imageURL }) => {
       <div className="flex flex-col gap-3">
         <p className="text-lg dark:text-gray-100 text-gray-900">{message}</p>
         {imageURL && (
-          <div className="w-auto mx-auto h-[180px] mt-5">
-            <Image
-              alt="PostImage"
-              src={imageURL}
-              className="rounded"
-              height={180}
-              width={300}
-            />
-          </div>
+          // <div className="w-auto mx-auto h-[180px] mt-5">
+          <Image
+            alt="PostImage"
+            src={imageURL}
+            className="rounded"
+            height={400}
+            width={600}
+            layout="responsive"
+          />
+          // </div>
         )}
       </div>
 
